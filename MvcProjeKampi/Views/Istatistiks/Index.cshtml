@@ -1,0 +1,116 @@
+﻿@model MvcProjeKampi.Models.CategoryHeadingUserViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İstatistikler</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .dashboard-card {
+            margin-bottom: 20px;
+            min-height: 200px; /* Kutuçukların minimum yüksekliği */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff; /* Yazı rengi beyaz */
+            font-size: 1.2em;
+            text-align: center; /* Yazıyı ortala */
+        }
+
+            .dashboard-card.blue {
+                background-color: #007bff; /* Mavi */
+            }
+
+            .dashboard-card.green {
+                background-color: #28a745; /* Yeşil */
+            }
+
+            .dashboard-card.yellow {
+                background-color: #ffc107; /* Sarı */
+            }
+
+            .dashboard-card.red {
+                background-color: #dc3545; /* Kırmızı */
+            }
+
+            .dashboard-card.teal {
+                background-color: #17a2b8; /* Turkuaz */
+            }
+
+            .dashboard-card p {
+                margin: 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="mb-4">İstatistikler</h2>
+        <div class="row">
+            <!-- Toplam Kategori Sayısı -->
+            <div class="col-md-4">
+                <div class="card dashboard-card blue">
+                    <div class="card-body">
+                        <h5 class="card-title">Toplam Kategori Sayısı</h5>
+                        <p>@Model.CategoryCount</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- "Yazılım" Kategorisine Ait Başlık Sayısı -->
+            <div class="col-md-4">
+                <div class="card dashboard-card green">
+                    <div class="card-body">
+                        <h5 class="card-title">"Yazılım" Kategorisine Ait Başlık Sayısı</h5>
+                        <p>@Model.HeadingCount</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- "Yazar Adında 'a' Harfi Geçen Yazar Sayısı -->
+            <div class="col-md-4">
+                <div class="card dashboard-card yellow">
+                    <div class="card-body">
+                        <h5 class="card-title">Yazar Adında 'a' Harfi Geçen Yazar Sayısı</h5>
+                        <p>@Model.AuthorsWithA</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- En Fazla Başlığa Sahip Kategori -->
+            <div class="col-md-4">
+                <div class="card dashboard-card red">
+                    <div class="card-body">
+                        <h5 class="card-title">En Fazla Başlığa Sahip Kategori</h5>
+                        <p>@Model.CategoryWithMostHeadings</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Durumu True ve False Olan Kategoriler Arasındaki Fark -->
+            <div class="col-md-4">
+                <div class="card dashboard-card teal">
+                    <div class="card-body">
+                        <h5 class="card-title">Durumu True ve False Olan Kategoriler Arasındaki Fark</h5>
+                        <p>@Model.CategoryDifference</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://unpkg.com/popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

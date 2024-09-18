@@ -16,6 +16,7 @@ namespace EntityLayer.Concrete
         [StringLength(200)]
         public string CategoryDescription{ get; set; }
         public bool CategoryStatus { get; set; }
+        public bool Durum { get; set; } // Durum sütunu
 
         public ICollection<Heading> Headings  { get; set; }
     }
