@@ -71,7 +71,7 @@ namespace MvcProjeKampi.Controllers
             var viewModel = new CategoryHeadingUserViewModel
             {
                 Categories = _context.Categories.ToList(),
-              //  Headings = _context.Headings.ToList(),
+              Headings = _context.Headings.ToList(),
                 Writers = _context.Writers.ToList(),
                 Contacts = _context.Contacts.ToList(),
                 Contents = _context.Contents.ToList(),

@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
+using MvcProjeKampi.Models;
+using DataAccessLayer.Concrete;
 
 namespace MvcProjeKampi.Models
 {
@@ -12,7 +15,7 @@ namespace MvcProjeKampi.Models
         public IEnumerable<Heading> Headings { get; set; }
         public IEnumerable<About> Abouts { get; set; }
         public IEnumerable<Contact> Contacts { get; set; }
-        public IEnumerable<Content> Contents { get; set; }
+        public IEnumerable<EntityLayer.Concrete.Content> Contents { get; set; }
         public IEnumerable<Writer> Writers { get; set; }
         public int CategoryCount { get; set; }  // Kategori sayısı
         public int HeadingCount { get; set; }   // Başlık sayısı
