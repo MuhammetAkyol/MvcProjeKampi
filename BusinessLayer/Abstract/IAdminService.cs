@@ -9,12 +9,10 @@ namespace BusinessLayer.Abstract
 {
     public interface IAdminService
     {
-        Admin Login(string username, string password);
         List<Admin> GetList();
         void AdminAdd(Admin admin);
         Admin GetByID(int id);
         void AdminDelete(Admin admin);
         void AdminUpdate(Admin admin);
-        void HashExistingPasswords();
     }
 }

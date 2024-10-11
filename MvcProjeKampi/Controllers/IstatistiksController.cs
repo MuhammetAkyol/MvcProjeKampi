@@ -12,6 +12,7 @@ namespace MvcProjeKampi.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using DataAccessLayer.Concrete; // DbContext ve Entity sınıfları için gerekli namespace
+    using EntityLayer.Concrete;
     using MvcProjeKampi.Models; // ViewModel ve diğer sınıflar için gerekli namespace
 
     public class IstatistiksController : Controller
@@ -70,7 +71,7 @@ namespace MvcProjeKampi.Controllers
 
             var viewModel = new CategoryHeadingUserViewModel
             {
-                Categories = _context.Categories.ToList(),
+                Categories = (IEnumerable<CategoryClass>)_context.Categories.ToList(),
               Headings = _context.Headings.ToList(),
                 Writers = _context.Writers.ToList(),
                 Contacts = _context.Contacts.ToList(),
@@ -81,6 +82,7 @@ namespace MvcProjeKampi.Controllers
                 AuthorsWithA = authorsWithA,//yukarıda açtığımız metodların çağrımı
                 CategoryWithMostHeadings = categoryWithMostHeadings, // Eklenen özellik
                 CategoryDifference = categoryDifference // Eklenen özellik
+                
 
             };
 

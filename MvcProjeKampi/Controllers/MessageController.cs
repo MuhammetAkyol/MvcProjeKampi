@@ -21,14 +21,14 @@ namespace MvcProjeKampi.Controllers
         MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator messagevalidator = new MessageValidator();
         [Authorize]
-        public ActionResult Inbox()//gelen mesajlar
+        public ActionResult Inbox(string p)//gelen mesajlar
         {
-            var messagelist = mm.GetListInbox();
+            var messagelist = mm.GetListInbox(p);
             return View(messagelist);
         }
-        public ActionResult Sendbox()//gönderilen mesajlar
+        public ActionResult Sendbox(string p)//gönderilen mesajlar
         {
-            var messagelist = mm.GetListSendInbox();
+            var messagelist = mm.GetListSendInbox(p);
             return View(messagelist);
 
         }

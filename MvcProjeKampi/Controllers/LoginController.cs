@@ -1,50 +1,4 @@
-﻿//using DataAccessLayer.Concrete;
-//using EntityLayer.Concrete;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using System.Web.Mvc;
-//using System.Xml.Schema;
-//using System.Web.Security;
-//using BusinessLayer.Abstract;
-
-//namespace MvcProjeKampi.Controllers
-//{
-//    public class LoginController : Controller
-//    {
-//        [HttpGet]
-//        public ActionResult Index()
-//        {
-//            return View();
-//        }
-//        [HttpPost]
-//        public ActionResult Index(Admin p)
-//        {
-//            Context c = new Context();
-//            var adminuserinfo = c.Admins.FirstOrDefault(x => x.AdminUserName == p.AdminUserName && x.AdminPassword == p.AdminPassword);
-
-//            if (adminuserinfo != null)
-//            {
-//                FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName, false);
-//                Session["AdminUserName"] = adminuserinfo.AdminUserName;
-//                return RedirectToAction("Index", "AdminCategory");
-//            }
-//            else
-//            {
-//                // Eğer kullanıcı adı veya şifre yanlışsa bir hata mesajı gönder
-//                TempData["LoginError"] = "Kullanıcı adı veya şifre hatalı!";
-//                return RedirectToAction("Index");
-//            }
-//        }
-
-//    }
-
-
-//}
-
-
-using DataAccessLayer.Concrete;
+﻿using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using System;
 using System.Linq;
@@ -53,11 +7,16 @@ using System.Web.Security;
 using BusinessLayer.Abstract;
 using Microsoft.AspNetCore.Identity;
 using BusinessLayer.Concrete;
+using System.Security.Cryptography.X509Certificates;
+using System.Web.UI.WebControls;
+using DataAccessLayer.EntityFramework;
 
 namespace MvcProjeKampi.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
+        WriterLoginManager wm = new WriterLoginManager(new EfWriterDal());
         [HttpGet]
         public ActionResult Index()
         {
@@ -86,16 +45,44 @@ namespace MvcProjeKampi.Controllers
                     return RedirectToAction("Index");
                 }
             }
-        }
-       
 
-        //public ActionResult HashPasswords()
-        //{
-        //    var adminManager = new AdminManager();
-        //    adminManager.UpdateAdminPasswords(); // Mevcut şifreleri hash'le
-        //    TempData["Message"] = "Tüm şifreler başarıyla hash'lenmiştir!";
-        //    return RedirectToAction("Index"); // İlgili sayfaya yönlendir
-        //}
+        }
+        [HttpGet]
+        public ActionResult WriterLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult WriterLogin(Writer p)
+        {
+            //using (var context = new Context())
+            //{
+            //    // Hashlenmiş şifre ile veritabanındaki şifreyi karşılaştır
+            //    var writeruserinfo = context.Writers.FirstOrDefault(x => x.WriterMail == p.WriterMail);
+            var writeruserinfo = wm.GetWriter(p.WriterMail, p.WriterPassword);
+                // Kullanıcı adı mevcut mu kontrol et
+                if (writeruserinfo != null /*/*&& PasswordHasher.VerifyPassword(p.AdminPassword, adminuserinfo.AdminPassword)*/)
+                {
+                    FormsAuthentication.SetAuthCookie(writeruserinfo.WriterMail, false);
+                    Session["WriterMail"] = writeruserinfo.WriterMail;
+                    return RedirectToAction("MyContent", "WriterPanelContent");
+                }
+                else
+                {
+                    TempData["LoginError"] = "Kullanıcı adı veya şifre hatalı!";
+                    return RedirectToAction("WriterLogin");
+                }
+            //}
+
+
+          
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Headings", "Default");
+        }
     }
 }
 

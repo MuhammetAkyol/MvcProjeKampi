@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
-    public class WriterController : Controller
+    [AllowAnonymous] public class WriterController : Controller
     {
         WriterValidator writervalidator = new WriterValidator();
 

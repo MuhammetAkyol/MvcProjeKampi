@@ -11,7 +11,7 @@ namespace MvcProjeKampi.Models
 {
     public class CategoryHeadingUserViewModel
     {
-        public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<CategoryClass> Categories { get; set; }
         public IEnumerable<Heading> Headings { get; set; }
         public IEnumerable<About> Abouts { get; set; }
         public IEnumerable<Contact> Contacts { get; set; }
