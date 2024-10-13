@@ -12,7 +12,9 @@
 
 Proje'de Kullandığım Dil Yöntem ve Paketler:
 
-C#, ASP.NET MVC, MsSQL, HTML5, JavaScript, Bootsrap, CSS, Angular, Paging, Raporlama, Pop-up
+C#, ASP.NET MVC, MsSQL, HTML5, JavaScript, Bootsrap, CSS, Angular, Paging, Raporlama, Pop-up.
+
+Bu proje, yazılım geliştirmede sürdürülebilirliği ve genişletilebilirliği artırmak için SOLID prensiplerine uygun olarak geliştirilmiştir. 
 
 
 
@@ -36,8 +38,7 @@ C#, ASP.NET MVC, MsSQL, HTML5, JavaScript, Bootsrap, CSS, Angular, Paging, Rapor
 ![18](https://github.com/user-attachments/assets/743b8c3e-9ddf-4b83-bc66-a32d9f1fedc2)
 ![19](https://github.com/user-attachments/assets/eb40493e-8717-4c79-bf63-c8f736841e9b)
 ![20](https://github.com/user-attachments/assets/644f6daa-1da3-4502-b01c-4e0a1a84329a)
-
-
+![Ekran görüntüsü 2024-10-14 000153](https://github.com/user-attachments/assets/30a36b86-8b7c-449e-aadd-11b1cb845919)
 
 
 
